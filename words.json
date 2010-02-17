@@ -1,0 +1,362 @@
+[
+    {
+        "id":1,
+        "word": "pots",
+        "index": 2,
+        "letter": "a"
+    },
+    {
+        "id":2,
+        "word": "face",
+        "index": 3,
+        "letter": "t"
+    },
+    {
+        "id":3,
+        "word": "coin",
+        "index": 1,
+        "letter": "j"
+    },
+    {
+        "id":4,
+        "word": "rage",
+        "index": 3,
+        "letter": "t"
+    },
+    {
+        "id":5,
+        "word": "pall",
+        "index": 4,
+        "letter": "e"
+    },
+    {
+        "id":6,
+        "word": "real",
+        "index": 4,
+        "letter": "r"
+    },
+    {
+        "id":7,
+        "word": "neat",
+        "index": 3,
+        "letter": "x"
+    },
+    {
+        "id":8,
+        "word": "side",
+        "index": 1,
+        "letter": "ride"
+    },
+    {
+        "id":9,
+        "word": "snap",
+        "index": 2,
+        "letter": "l"
+    },
+    {
+        "id":10,
+        "word": "zone",
+        "index": 1,
+        "letter": "c"
+    },
+    {
+        "id":11,
+        "word": "sore",
+        "index": 4,
+        "letter": "t"
+    },
+    {
+        "id":12,
+        "word": "foul",
+        "index": 3,
+        "letter": "o"
+    },
+    {
+        "id":13,
+        "word": "boot",
+        "index": 4,
+        "letter": "b"
+    },
+    {
+        "id":14,
+        "word": "code",
+        "index": 1,
+        "letter": "m"
+    },
+    {
+        "id":15,
+        "word": "dish",
+        "index": 4,
+        "letter": "k"
+    },
+    {
+        "id":16,
+        "word": "curl",
+        "index": 1,
+        "letter": "h"
+    },
+    {
+        "id":17,
+        "word": "dole",
+        "index": 2,
+        "letter": "a"
+    },
+    {
+        "id":18,
+        "word": "ease",
+        "index": 4,
+        "letter": "t"
+    },
+    {
+        "id":19,
+        "word": "find",
+        "index": 2,
+        "letter": "u"
+    },
+    {
+        "id":20,
+        "word": "gate",
+        "index": 3,
+        "letter": "l"
+    },
+    {
+        "id":21,
+        "word": "keep",
+        "index": 3,
+        "letter": "l"
+    },
+    {
+        "id":22,
+        "word": "lice",
+        "index": 2,
+        "letter": "a"
+    },
+    {
+        "id":23,
+        "word": "mass",
+        "index": 2,
+        "letter": "o"
+    },
+    {
+        "id":24,
+        "word": "maul",
+        "index": 3,
+        "letter": "l"
+    },
+    {
+        "id":25,
+        "word": "mage",
+        "index": 3,
+        "letter": "c"
+    },
+    {
+        "id":26,
+        "word": "muck",
+        "index": 1,
+        "letter": "l"
+    },
+    {
+        "id":27,
+        "word": "nail",
+        "index": 1,
+        "letter": "f"
+    },
+    {
+        "id":28,
+        "word": "tale",
+        "index": 2,
+        "letter": "i"
+    },
+    {
+        "id":29,
+        "word": "wide",
+        "index": 2,
+        "letter": "a"
+    },
+    {
+        "id":30,
+        "word": "want",
+        "index": 4,
+        "letter": "d"
+    },
+    {
+        "id":31,
+        "word": "body",
+        "index": 4,
+        "letter": "e"
+    },
+    {
+        "id":32,
+        "word": "belt",
+        "index": 4,
+        "letter": "l"
+    },
+    {
+        "id":33,
+        "word": "cart",
+        "index": 3,
+        "letter": "s"
+    },
+    {
+        "id":34,
+        "word": "dial",
+        "index": 2,
+        "letter": "e"
+    },
+    {
+        "id":35,
+        "word": "dump",
+        "index": 1,
+        "letter": "b"
+    },
+    {
+        "id":36,
+        "word": "earn",
+        "index": 1,
+        "letter": "y"
+    },
+    {
+        "id":37,
+        "word": "fame",
+        "index": 1,
+        "letter": "s"
+    },
+    {
+        "id":38,
+        "word": "felt",
+        "index": 3,
+        "letter": "e"
+    },
+    {
+        "id":39,
+        "word": "gift",
+        "index": 1,
+        "letter": "l"
+    },
+    {
+        "id":40,
+        "word": "fold",
+        "index": 1,
+        "letter": "t"
+    },
+    {
+        "id":41,
+        "word": "gull",
+        "index": 2,
+        "letter": "a"
+    },
+    {
+        "id":42,
+        "word": "hock",
+        "index": 2,
+        "letter": "a"
+    },
+    {
+        "id":43,
+        "word": "hang",
+        "index": 2,
+        "letter": "u"
+    },
+    {
+        "id":44,
+        "word": "lain",
+        "index": 4,
+        "letter": "d"
+    },
+    {
+        "id":45,
+        "word": "lick",
+        "index": 2,
+        "letter": "u"
+    },
+    {
+        "id":46,
+        "word": "nose",
+        "index": 3,
+        "letter": "t"
+    },
+    {
+        "id":47,
+        "word": "peel",
+        "index": 4,
+        "letter": "p"
+    },
+    {
+        "id":48,
+        "word": "rise",
+        "index": 3,
+        "letter": "l"
+    },
+    {
+        "id":49,
+        "word": "ruin",
+        "index": 2,
+        "letter": "a"
+    },
+    {
+        "id":50,
+        "word": "scam",
+        "index": 4,
+        "letter": "n"
+    },
+    {
+        "id":51,
+        "word": "seep",
+        "index": 4,
+        "letter": "n"
+    },
+    {
+        "id":52,
+        "word": "sham",
+        "index": 2,
+        "letter": "c"
+    },
+    {
+        "id":53,
+        "word": "slug",
+        "index": 2,
+        "letter": "n"
+    },
+    {
+        "id":54,
+        "word": "slur",
+        "index": 1,
+        "letter": "b"
+    },
+    {
+        "id":55,
+        "word": "snip",
+        "index": 2,
+        "letter": "k"
+    },
+    {
+        "id":56,
+        "word": "sore",
+        "index": 3,
+        "letter": "l"
+    },
+    {
+        "id":57,
+        "word": "shut",
+        "index": 4,
+        "letter": "n"
+    },
+    {
+        "id":58,
+        "word": "sire",
+        "index": 3,
+        "letter": "t"
+    },
+    {
+        "id":59,
+        "word": "tile",
+        "index": 4,
+        "letter": "l"
+    },
+    {
+        "id":60,
+        "word": "wale",
+        "index": 4,
+        "letter": "l"
+    }
+]

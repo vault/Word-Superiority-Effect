@@ -1,0 +1,56 @@
+body {
+    text-align: center;
+}
+
+#test-area {
+    width:600px;
+    height:300px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#test-text {
+    display:block;
+    font-family:Helvetica, sans-serif;
+    font-size:85pt;
+    padding-top:100px;
+    margin-bottom:auto;
+}
+
+#controls {
+    margin:50px;
+}
+
+.button {
+    display:inline;
+    border: 3px black solid;
+    padding: 20px 50px;
+    padding-top:35px;
+    margin: 20px 40px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+
+.button:hover {
+    border-color: blue;
+}
+
+.button:active {
+    border-color: green;
+    background-color:green;
+}
+
+.button-text {
+    padding: 0; margin: 0;
+    font-family: Helvetica, sans-serif;
+    font-size: 30pt;
+}
+
+.message-text {
+    font-family: Helvetica, sans-serif;
+    font-size: 18pt;
+}
+
+.hide {
+    display:none;
+}
