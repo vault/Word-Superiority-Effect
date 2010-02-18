@@ -7,12 +7,20 @@ var participantID;
 var completed;
 
 function setStuffUp () {
+    ensureLogin();
     completed = 0;
     $("#buttons").hide();
     $("#next").hide();
-    $("#finish").hide();
+    $("#done").hide();
     $("#start").click(function(){start("#start");});
     $("#next").click(function(){start("#next");});
+}
+
+function ensureLogin () {
+    participantID = $.cookie('partID');
+    if (!participantID) {
+        window.location("/register");
+    }
 }
 
 function start (element) {

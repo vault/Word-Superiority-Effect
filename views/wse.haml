@@ -1,0 +1,25 @@
+!!! 5
+%head
+  %title W-S-E
+  %script{:type => "text/javascript", :src => "jquery-1.4.1.js"}
+  %script{:type => "text/javascript", :src => "jquery.cookie.js"}
+  %script{:type => "text/javascript", :src => "wse.js"}
+  %link{:rel => "stylesheet", :href => "wse.css", :type => "text/css", :charset => "utf-8"}
+%body
+  #test-area
+    %span#test-text &nbsp;
+  #controls
+    #other
+      #start.button
+        %span#start-message.message-text Click Here To Start
+      #next.button
+        %span#next-message.message-text Next
+      #done.button
+        %span#done-message.message-text All Done
+    #buttons
+      #button-left.button
+        %span#letter-left.button-text &nbsp;
+      #button-right.button
+        %span#letter-right.button-text &nbsp;
+
+
