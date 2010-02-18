@@ -6,7 +6,7 @@ require 'participant'
 
 
 WORDS = JSON::parse(File.read('words.json'))
-participants = Participants.loadparticipants
+participants = Participant.loadparticipants
 
 enable :sessions
 
@@ -32,6 +32,7 @@ get '/test' do
 end
 
 post '/test/:id' do |id|
+    p = participants[id]
 
 end
 
@@ -43,6 +44,8 @@ post '/register' do
     age = params['age']
     gender = params['gender']
     id = participants.size + 1
+    p = Participant.new(id, age, gender)
+    participants[id.to_s] = p
     session["partID"] = id
     redirect '/test'
 end
