@@ -1,0 +1,8 @@
+
+This is an implementation of the Word Superiority Effect as a Sinatra web
+application. It's main purpose is so that I can complete the lab required
+for my psychology class, but it has a bonus of allowing me to play with
+Sinatra as well.
+
+For more information on the WSE, see here: http://en.wikipedia.org/wiki/Word_superiority_effect
+
