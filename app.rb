@@ -9,7 +9,7 @@ require 'helpers'
 WORDS = JSON::parse(File.read('words.json'))
 LETTERS = JSON::parse(File.read('letters.json'))
 
-participants = Participant.load_participants
+Participants = Participant.load_participants
 
 enable :sessions
 
@@ -53,20 +53,20 @@ get '/random' do
     redirect '/register' unless session[:partID]
     content_type :json
     r = rand(3)
-    p = participants[session[:partID]]
+    p = Participants[session[:partID]]
     needed = [unseen_word, unseen_letter, mask(unseen_letter)]
     needed[0] = nil if p.words.length >= 20
     needed[1] = nil if p.letters.length >= 20
-    needed[2] = nil if p.masked_letters >= 20
+    needed[2] = nil if p.masked_letters.length >= 20
     x = needed[r]
-    return x if x
+    return x.to_json if x
     needed.delete_at r
     r = rand(2)
     x = needed[r]
-    return x if x
+    return x.to_json if x
     needed.delete_at r
     x = needed[0]
-    return x if x
+    return x.to_json if x
     redirect '/done' 
 end
 
@@ -76,13 +76,13 @@ end
 
 post '/test' do
     content_type :json
-    p = participants[session[:partID]]
+    p = Participants[session[:partID]]
     word = {'id' => params[:id], 'choice' => params[:choide],
         'type' => params[:type]}
     case params[:type]
     when "word"
         p.add_word w
-    when "mask"
+    when "masked"
         p.add_masked w
     when "letter"
         p.add_letter w
@@ -96,14 +96,14 @@ get '/register' do
 end
 
 post '/register' do 
-    redirect '/test' if session[:partID]
+    #redirect '/test' if session[:partID]
     content_type :json
     age = params['age']
     gender = params['gender']
-    id = participants.size + 1
-    p = Participant.new(id.to_s, age, gender)
-    participants[id.to_s] = p
-    session[:partID] = id
+    id = (Participants.size + 1)
+    p = Participant.new(id, age, gender)
+    Participants[id.to_s] = p
+    session[:partID] = id.to_s
     p.save
     redirect '/test'
 end

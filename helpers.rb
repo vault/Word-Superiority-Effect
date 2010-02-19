@@ -1,9 +1,9 @@
 
 helpers do
     def unseen_word 
-        p = participants[session[:partID]]
+        p = Participants[session[:partID]]
         possible = WORDS.reject do |item|
-            p.words.key? item.id
+            p.words.key? item.id.to_s
         end
         x = possible[rand(possible.length)]
         x['type'] = "word"
@@ -11,9 +11,9 @@ helpers do
     end
 
     def unseen_letter
-        p = participants[session[:partID]]
+        p = Participants[session[:partID]]
         possible = LETTERS.reject do |item|
-            p.letter.merge(p.masked_letters).key? item.id
+            p.letters.merge(p.masked_letters).key? item.id.to_s
         end
         x = possible[rand(possible.length)]
         x['type'] = "letter"
@@ -21,9 +21,10 @@ helpers do
     end
 
     def mask letter
-        l = letter['word'].dup
+        l = letter.dup
         l['word'].gsub!(" ", "#")
         l['type'] = "masked"
         l
     end
 end
+

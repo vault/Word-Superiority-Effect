@@ -10,13 +10,15 @@ function setStuffUp () {
     $("#buttons").hide();
     $("#next").hide();
     $("#done").hide();
-    $("#done").click(function(){window.location.set("/done");});
     $("#start").click(function(){start("#start");});
     $("#next").click(function(){start("#next");});
 }
 
 function start (element) {
-    $(element).fadeOut("fast", completed < 60 ? doTest : finish);
+    for (var i = 0; i < 60; i++) {
+        doTest();
+    }
+    finish();
 }
 
 function doTest () {
@@ -49,7 +51,7 @@ function doSubmit (sel, word) {
     $("#buttons").fadeOut("fast", function(){
         $.post("/test", {'word':word.id, 'choice':$(sel).html,
                 'type':word.type}, function(){
-                    $("#next").fadeIn("fast");
+                    $("#next").show();
                 });
         });
 }
@@ -58,7 +60,7 @@ function finish() {
     $("#start").hide();
     $("#next").hide();
     $("#buttons").fadeOut("fast", function(){
-        $("#done").fadeIn("fast");
+        $("#done").show();
     });
 }
 

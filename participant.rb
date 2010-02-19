@@ -35,15 +35,15 @@ class Participant
     end
 
     def add_word word
-        @words[word.id] = word
+        @words[word.id.to_s] = word
     end
 
     def add_letter word
-        @letters << word
+        @letters[word.id.to_s] = word
     end
 
     def add_masked word
-        @masked_letters << word
+        @masked_letters[word.id.to_s] = word
     end
 
     def save
