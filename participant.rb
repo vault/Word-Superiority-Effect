@@ -1,21 +1,17 @@
 
-require 'json'
-
-
 class Participant
 
-    data_dir = "data/"
+    @@data_dir = "data/"
 
-    attr_reader :id, :age, :gender, :words, :letters, :masked_letters, :trials
+    attr_reader :id, :age, :gender, :words, :letters, :masked_letters
 
-    def initialize(id, age, gender, words=0, letters=0, masked_letters=0, trials=[])
+    def initialize(id, age, gender, words={}, letters={}, masked_letters={}) 
         @id = id
         @age = age
         @gender = gender
         @words = words
         @letters = letters
         @masked_letters = masked_letters
-        @trials = trials
     end
 
     def to_json(*a)
@@ -27,14 +23,15 @@ class Participant
                         'gender' => @gender,
                         'words' => @words,
                         'letters' => @letters,
-                        'masked_letters' => @masked_letters,
-                        'trials' => @trials
+                        'masked_letters' => @masked_letters
                       }
         }.to_json(*a)
     end
 
     def self.json_create(o)
-        new(*o['data'])
+        data = o['data']
+        new(data['participantID'], data['age'], data['gender'], 
+            data['words'], data['letters'], data['masked_letters'])
     end
 
     def add_trial(trial)
@@ -49,12 +46,15 @@ class Participant
 
     def self.load_participants
         all = {}
-        Dir.open(@data_dir) do |dir|
+        Dir.open(@@data_dir) do |dir|
             dir.each do |filename|
-                p = json_create(File.read(data_dir + filename))
-                all[p.id] = p
+                if filename =~ /json$/
+                    p = json_create(File.read(data_dir + filename))
+                    all[p.id.to_s] = p
+                end
             end
         end
         all
     end
 end
+
