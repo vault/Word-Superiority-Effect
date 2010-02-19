@@ -2,12 +2,13 @@
 %head
   %title W-S-E
   %script{:type => "text/javascript", :src => "jquery-1.4.1.js"}
+  %script{:type => "text/javascript", :src => "jquery.cookie.js"}
   %script{:type => "text/javascript", :src => "register.js"}
   %link{:rel => "stylesheet", :href => "wse.css", :type => "text/css", :charset => "utf-8"}
 %body
-  %form{:method => "post", :action => "/register"}
-    %input{:name => "age", :maxlength => "2", :placeholder => "Age"}
-    %select{:name => "gender"}
+  %form#form{:method => "post", :action => "/register"}
+    %input#age{:name => "age", :maxlength => "2", :placeholder => "Age"}
+    %select#gender{:name => "gender"}
       %option Male
       %option Female
     %input{:type => "Submit", :value => "Submit"}

@@ -3,24 +3,16 @@ $(document).ready(function(){
     setStuffUp();
 });
 
-var participantID;
 var completed;
 
 function setStuffUp () {
-    ensureLogin();
     completed = 0;
     $("#buttons").hide();
     $("#next").hide();
     $("#done").hide();
+    $("#done").click(function(){window.location.set("/done");});
     $("#start").click(function(){start("#start");});
     $("#next").click(function(){start("#next");});
-}
-
-function ensureLogin () {
-    participantID = $.cookie('partID');
-    if (!participantID) {
-        window.location("/register");
-    }
 }
 
 function start (element) {
@@ -33,7 +25,7 @@ function doTest () {
 }
 
 function getWord (callback) {
-    $.getJSON("/words/random/unseen",{"partID":participantID},function(data){callback(data);});
+    $.getJSON("/random",function(data){callback(data);});
 }
 
 function runAnimation (word) {
@@ -55,15 +47,19 @@ function doSubmit (sel, word) {
     completed += 1
     $("#test-text").hide();
     $("#buttons").fadeOut("fast", function(){
-        $.post("test/"+participantID, {'word':word.id, 
-                'partID':participantID}, function(){
+        $.post("/test", {'word':word.id, 'choice':$(sel).html,
+                'type':word.type}, function(){
                     $("#next").fadeIn("fast");
                 });
         });
 }
 
 function finish() {
-
+    $("#start").hide();
+    $("#next").hide();
+    $("#buttons").fadeOut("fast", function(){
+        $("#done").fadeIn("fast");
+    });
 }
 
 function setChoices (first, second) {

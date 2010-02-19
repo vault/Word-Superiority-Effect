@@ -28,8 +28,9 @@ get '/words/random' do
 end
 
 get '/words/random/unseen' do
-    redirect '/register' unless session["partID"]
+    redirect '/register' unless session[:partID]
     content_type :json
+    unseen_word
 end
 
 get '/letters' do
@@ -43,18 +44,51 @@ get '/letters/random' do
 end
 
 get '/letters/random/unseen' do
-    redirect '/register' unless session["partID"]
+    redirect '/register' unless session[:partID]
     content_type :json
+    unseen_letter
+end
 
+get '/random' do
+    redirect '/register' unless session[:partID]
+    content_type :json
+    r = rand(3)
+    p = participants[session[:partID]]
+    needed = [unseen_word, unseen_letter, mask(unseen_letter)]
+    needed[0] = nil if p.words.length >= 20
+    needed[1] = nil if p.letters.length >= 20
+    needed[2] = nil if p.masked_letters >= 20
+    x = needed[r]
+    return x if x
+    needed.delete_at r
+    r = rand(2)
+    x = needed[r]
+    return x if x
+    needed.delete_at r
+    x = needed[0]
+    return x if x
+    redirect '/done' 
 end
 
 get '/test' do
     haml :wse
 end
 
-post '/test/:id' do |id|
-    p = participants[id]
-
+post '/test' do
+    content_type :json
+    p = participants[session[:partID]]
+    word = {'id' => params[:id], 'choice' => params[:choide],
+        'type' => params[:type]}
+    case params[:type]
+    when "word"
+        p.add_word w
+    when "mask"
+        p.add_masked w
+    when "letter"
+        p.add_letter w
+    end
+    p.save
+    {}.to_json
 end
 
 get '/register' do
@@ -62,12 +96,19 @@ get '/register' do
 end
 
 post '/register' do 
+    redirect '/test' if session[:partID]
+    content_type :json
     age = params['age']
     gender = params['gender']
     id = participants.size + 1
     p = Participant.new(id.to_s, age, gender)
     participants[id.to_s] = p
-    session["partID"] = id
+    session[:partID] = id
+    p.save
     redirect '/test'
+end
+
+get '/done' do
+    haml :done
 end
 

@@ -34,12 +34,20 @@ class Participant
             data['words'], data['letters'], data['masked_letters'])
     end
 
-    def add_trial(trial)
-        @trials << trial
+    def add_word word
+        @words[word.id] = word
+    end
+
+    def add_letter word
+        @letters << word
+    end
+
+    def add_masked word
+        @masked_letters << word
     end
 
     def save
-        File.open(data_dir + "#{@id}.json", "w") do |f|
+        File.open(@@data_dir + "#{@id}.json", "w") do |f|
             f.write(self.to_json)
         end
     end
@@ -49,7 +57,7 @@ class Participant
         Dir.open(@@data_dir) do |dir|
             dir.each do |filename|
                 if filename =~ /json$/
-                    p = json_create(File.read(data_dir + filename))
+                    p = json_create(File.read(@@data_dir + filename))
                     all[p.id.to_s] = p
                 end
             end
