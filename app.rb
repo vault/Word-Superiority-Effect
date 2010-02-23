@@ -2,12 +2,14 @@
 require 'rubygems'
 require 'sinatra'
 require 'json'
+require 'couchrest'
 require 'participant'
 require 'helpers'
 
 
-WORDS = JSON::parse(File.read('words.json'))
-LETTERS = JSON::parse(File.read('letters.json'))
+#WORDS = JSON::parse(File.read('words.json'))
+#LETTERS = JSON::parse(File.read('letters.json'))
+
 
 Participants = Participant.load_participants
 
