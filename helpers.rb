@@ -7,5 +7,13 @@ helpers do
         end
         {:words => words, :letters => letters, :masked => masked}
     end
+
+    def next_type choices
+        nextt = choices.map do |k,v|
+            {:type => k, :size => v.size}
+        end.reduce({:type => :words, :size => 0) do |smallest, v|
+            smallest[:size] < v[:size] ? smallest : v
+        end[:type]
+    end
 end
 

@@ -1,7 +1,6 @@
 
 require 'rubygems'
 require 'sinatra'
-require 'couchrest'
 require 'documents'
 require 'helpers'
 
@@ -13,13 +12,17 @@ get '/' do
 end
 
 get '/random' do
+    redirect_to '/register' unless session[:partID]
+    content_type :json
     p = Participant.get(session[:partID])
     choices = sort_choices(Choice.by_participant :key => p.id)
-
-
+    nextt = next_type(choices)
+    possible = (Word.by_type :key => nextt) - choices[nextt]
+    possible[rand(possible.size)].to_json
 end
 
 get '/test' do
+    redirect_to '/register' unless session[:partID]
     haml :wse
 end
 

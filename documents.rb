@@ -11,17 +11,6 @@ class Participant < CouchRest::ExtendedDocument
 
     timestamps!
 
-    #view_by :choices,
-        #:map => <<-EOJS
-            #function(doc) {
-                #if (doc['couchrest-type'] == 'Participant') {
-                    #emit([doc._id, 0], doc);
-                #} else if (doc['couchrest-type'] == 'Choice') {
-                    #emit([doc.participant._id, 1], doc);
-                #}
-            #}
-        #EOJS
-
 end
 
 class Word < CouchRest::ExtendedDocument
