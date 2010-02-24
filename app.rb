@@ -4,7 +4,7 @@ require 'sinatra'
 require 'documents'
 require 'helpers'
 require 'haml'
-require 'ruby-debug'
+#require 'ruby-debug'
 
 
 enable :sessions
@@ -22,7 +22,6 @@ get '/random' do
     possible = (Word.by_type :key => nextt).reject do |item|
         choices[nextt].include? item
     end
-    #debugger
     return possible[rand(possible.size)].to_json
 end
 
@@ -34,9 +33,10 @@ end
 post '/test' do
     part = Participant.get(session[:partID])
     word = Word.get(params[:word])
+    done = (Choice.by_participant :key => session[:partID]).size >= 60
     c = params[:choice]
     choice = Choice.new(:participant => part, :word => word, :choice => c)
-    choice.save
+    choice.save unless done
     return
 end
 
@@ -51,6 +51,23 @@ post '/register' do
     part.save
     session[:partID] = part[:_id]
     redirect '/test'
+end
+
+get '/stats' do
+    
+end
+
+get '/stats/:id' do |id|
+    part = Participant.get(id)
+    c = Choice.by_participant :key => id
+    choices = sort_choices(c)
+    stats = gen_stats choices
+    haml :stats_id, :locals => {:stats => stats, :participant => part}
+end
+
+get '/participants' do
+    parts = Participant.all
+    haml :participants, :locals => {:parts => parts}
 end
 
 get '/done' do

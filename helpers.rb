@@ -31,5 +31,43 @@ helpers do
             end
         end[:type]
     end
+
+    def is_correct choice
+        if choice.word.word[choice.word.index-1] == choice.choice
+            true
+        else
+            false
+        end
+    end
+
+    def gen_stats choices
+        m = choices[:masked]
+        w = choices[:word]
+        l = choices[:letter]
+        total = m.size+w.size+l.size
+
+        corm = m.map{|c|is_correct c}.reject{|x| x}.size
+        corml = m.size
+        mperc = corm.to_f/m.size.to_f
+        
+        corw = w.map{|c|is_correct c}.reject{|x| x}.size
+        corwl = w.size
+        mperw = corw.to_f/m.size.to_f
+
+        corl = l.map{|c|is_correct c}.reject{|x| x}.size
+        corll = l.size
+        mperl = corl.to_f/m.size.to_f
+
+        totalc = corl + corm + corw
+        perc = totalc.to_f/total.to_f
+        {:total => {:percent => perc, :size => total, :correct => totalc},
+         :word => {:percent => mperw, :size => corwl, :correct => corw},
+         :letter => {:percent => mperl, :size => corll, :correct => corl},
+         :masked => {:percent => mperc, :size => corml, :correct => corm}}
+    end
+
+    def global_stats stats
+        
+    end
 end
 
