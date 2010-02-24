@@ -34,12 +34,19 @@ class Choice < CouchRest::ExtendedDocument
 
     timestamps!
 
-    view_by :participant
+    view_by :participant,
+        :map => <<-EOJS
+            function(doc){
+                if(doc['couchrest-type'] == 'Choice') {
+                    emit(doc.participant._id, doc);
+                }
+            }
+        EOJS
     view_by :participant_and_type,
         :map => <<-EOJS
             function(doc){
                 if (doc['couchrest-type'] == 'Choice') {
-                    emit([doc.participant.id, doc.word.type], doc);
+                    emit([doc.participant._id, doc.word.type], doc);
                 }
             }
         EOJS
