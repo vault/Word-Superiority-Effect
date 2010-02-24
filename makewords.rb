@@ -2,8 +2,7 @@
 
 require 'rubygems'
 require 'json'
-require 'couchrest'
-require 'participant'
+require 'documents'
 
 
 WORDS = JSON::parse(File.read("words.json"))
