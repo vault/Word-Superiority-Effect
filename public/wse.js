@@ -11,8 +11,9 @@ function setStuffUp () {
     $("#buttons").hide();
     $("#next").hide();
     $("#done").hide();
-    $("#button-left").click(function(){doSubmit("#button-left", word);});
-    $("#button-right").click(function(){doSubmit("#button-right", word);});
+    $("#done").click(function(){window.location.replace("/done");});
+    $("#button-left").click(function(){doSubmit("#letter-left", word);});
+    $("#button-right").click(function(){doSubmit("#letter-right", word);});
     $("#start").click(function(){start();});
     $("#next").click(function(){start();});
 }
@@ -27,8 +28,9 @@ function start () {
 
 function doTest () {
     $("#test-text").html('&nbsp;');
-    getWord(function(w){word = w;});
-    runAnimation();
+    $("#start").hide();
+    $("#next").hide();
+    getWord(function(w){word = w;runAnimation();});
 }
 
 function getWord (callback) {
@@ -37,7 +39,8 @@ function getWord (callback) {
 
 function runAnimation () {
     $("#test-text").hide();
-    $("#test-text").html(word.word.toUpperCase());
+    var w = word.word.toUpperCase();
+    $("#test-text").html(w);
     $("#test-text").show();
     setTimeout(function(){$("#test-text").hide();testFinished();}, 20);
 }
@@ -48,12 +51,14 @@ function testFinished () {
     setTimeout(function(){$("#buttons").fadeIn("fast");}, 1500);
 }
 
-function doSubmit (sel, word) {
+function doSubmit (sel) {
     $("#test-text").hide();
     $("#buttons").fadeOut("fast", function(){
-        $.post("/test", {'word':word.id, 'choice':$(sel).html},
+        $.post("/test", {'word':word._id, 'choice':$(sel).html()},
             function(){
                 completed += 1;
+                $("#next").show();
+                $("#next").fadeIn("fast");
                 $("#next").show();
             });
     });
