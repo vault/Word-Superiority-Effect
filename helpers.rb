@@ -2,7 +2,6 @@
 helpers do
     def sort_choices choices
         word,  letter,  masked = [],[],[]
-        #debugger
         choices.each do |choice|
             #eval(choice['word']['type']) << choice
             case choice.word.type
@@ -33,7 +32,7 @@ helpers do
     end
 
     def is_correct choice
-        if choice.word.word[choice.word.index-1] == choice.choice
+        if choice.word.word[choice.word.index-1].chr.upcase == choice.choice.upcase
             true
         else
             false
@@ -46,20 +45,20 @@ helpers do
         l = choices[:letter]
         total = m.size+w.size+l.size
 
-        corm = m.map{|c|is_correct c}.reject{|x| x}.size
+        corm = m.map{|c|is_correct c}.select{|x| x}.size
         corml = m.size
-        mperc = corm.to_f/m.size.to_f
+        mperc = (corm.to_f/corml.to_f * 100).round
         
-        corw = w.map{|c|is_correct c}.reject{|x| x}.size
+        corw = w.map{|c|is_correct c}.select{|x| x}.size
         corwl = w.size
-        mperw = corw.to_f/m.size.to_f
+        mperw = (corw.to_f/corwl * 100).round
 
-        corl = l.map{|c|is_correct c}.reject{|x| x}.size
+        corl = l.map{|c|is_correct c}.select{|x| x}.size
         corll = l.size
-        mperl = corl.to_f/m.size.to_f
+        mperl = (corl.to_f/corll.to_f * 100).round
 
         totalc = corl + corm + corw
-        perc = totalc.to_f/total.to_f
+        perc = (totalc.to_f/total.to_f * 100).round
         {:total => {:percent => perc, :size => total, :correct => totalc},
          :word => {:percent => mperw, :size => corwl, :correct => corw},
          :letter => {:percent => mperl, :size => corll, :correct => corl},

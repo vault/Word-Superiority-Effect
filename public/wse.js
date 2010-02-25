@@ -42,7 +42,7 @@ function runAnimation () {
     var w = word.word.toUpperCase();
     $("#test-text").html(w);
     $("#test-text").show();
-    setTimeout(function(){$("#test-text").hide();testFinished();}, 20);
+    setTimeout(function(){$("#test-text").hide();testFinished();}, 10);
 }
 
 function testFinished () {

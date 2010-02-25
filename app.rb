@@ -4,7 +4,7 @@ require 'sinatra'
 require 'documents'
 require 'helpers'
 require 'haml'
-#require 'ruby-debug'
+require 'ruby-debug'
 
 
 enable :sessions
@@ -54,7 +54,11 @@ post '/register' do
 end
 
 get '/stats' do
-    
+    c = Choice.all
+    choices = sort_choices(c)
+    stats = gen_stats choices
+    numparts = Participant.all.size
+    haml :stats, :locals => {:stats => stats, :num_parts => numparts}
 end
 
 get '/stats/:id' do |id|
@@ -62,7 +66,7 @@ get '/stats/:id' do |id|
     c = Choice.by_participant :key => id
     choices = sort_choices(c)
     stats = gen_stats choices
-    haml :stats_id, :locals => {:stats => stats, :participant => part}
+    haml :stats_id, :locals => {:stats => stats, :participant => part, :choices => choices}
 end
 
 get '/participants' do
@@ -71,6 +75,6 @@ get '/participants' do
 end
 
 get '/done' do
-    haml :done
+    haml :done, :locals => {:partID => session[:partID]}
 end
 

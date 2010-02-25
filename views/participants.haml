@@ -4,7 +4,9 @@
   %link{:rel => "stylesheet", :href => "wse.css", :type => "text/css", :charset => "utf-8"}
 %body
   %h1 Participants
+  %p="#{parts.size} participants"
   %ul
     - parts.each do |part|
       %li
-        %a=(:href => "stats/#{part.[:_id]}")part.id
+        %a{:href => "/stats/#{part[:_id]}"}="age: #{part[:age]}, gender: #{part[:gender]}, id: #{part[:_id]}"
+

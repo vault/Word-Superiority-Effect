@@ -1,7 +1,7 @@
 require 'couchrest'
 
 SERVER = CouchRest.new
-DB = SERVER.database!('word-superiority')
+DB = SERVER.database!('word-superiority-test-2')
 
 class Participant < CouchRest::ExtendedDocument
     use_database DB

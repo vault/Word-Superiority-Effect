@@ -4,22 +4,66 @@
   %link{:rel => "stylesheet", :href => "wse.css", :type => "text/css", :charset => "utf-8"}
 %body
   %h1="Stats for #{ participant[:_id] }"
-  %h2="Age: #{ participange[:age]}, Gender: #{ participant[:gender] }"
-  %h3 Total
-  %h4="Total: #{stats[:total][:size]}"
-  %h4="Correct: #{stats[:total][:correct]}"
-  %h4="Percent: #{stats[:total][:percent]}"
-  %h3 Words
-  %h4="Total: #{stats[:word][:size]}"
-  %h4="Correct: #{stats[:word][:correct]}"
-  %h4="Percent: #{stats[:word][:percent]}"
-  %h3 Letters
-  %h4="Total: #{stats[:letter][:size]}"
-  %h4="Correct: #{stats[:letter][:correct]}"
-  %h4="Percent: #{stats[:letter][:percent]}"
-  %h3 Masked
-  %h4="Total: #{stats[:masked][:size]}"
-  %h4="Correct: #{stats[:masked][:correct]}"
-  %h4="Percent: #{stats[:masked][:percent]}"
-  
+  %h2="Age: #{ participant[:age]}, Gender: #{ participant[:gender] }"
+
+  %table
+    %tr
+      %th
+      %th Words 
+      %th Letters
+      %th Masked
+      %th Total
+    %tr
+      %td Correct
+      %td=stats[:word][:correct]
+      %td=stats[:letter][:correct]
+      %td=stats[:masked][:correct]
+      %td=stats[:total][:correct]
+    %tr
+      %td Completed
+      %td=stats[:word][:size]
+      %td=stats[:letter][:size]
+      %td=stats[:masked][:size]
+      %td=stats[:total][:size]
+    %tr
+      %td Percent
+      %td=stats[:word][:percent]
+      %td=stats[:letter][:percent]
+      %td=stats[:masked][:percent]
+      %td=stats[:total][:percent]
+
+  %h3 Choices
+  %h4 Words
+  %table
+    %tr
+      %th Word
+      %th Choice
+      %th Index
+    - choices[:word].each do |choice|
+      %tr
+        %td=choice.word.word
+        %td=choice.choice
+        %td=choice.word.index
+  %h4 Letters
+  %table
+    %tr
+      %th Word
+      %th Choice
+      %th Index
+    - choices[:letter].each do |choice|
+      %tr
+        %td=choice.word.word
+        %td=choice.choice
+        %td=choice.word.index
+  %h4 Masked
+  %table
+    %tr
+      %th Word
+      %th Choice
+      %th Index
+    - choices[:masked].each do |choice|
+      %tr 
+        %td=choice.word.word
+        %td=choice.choice
+        %td=choice.word.index
 

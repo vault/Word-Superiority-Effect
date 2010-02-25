@@ -1,0 +1,33 @@
+!!! 5
+%head
+  %title W-S-E
+  %link{:rel => "stylesheet", :href => "wse.css", :type => "text/css", :charset => "utf-8"}
+%body
+  %h1 Global Stats
+  %h2="#{num_parts} total participants"
+  %table
+    %tr
+      %th
+      %th Words 
+      %th Letters
+      %th Masked
+      %th Total
+    %tr
+      %td Correct
+      %td=stats[:word][:correct]
+      %td=stats[:letter][:correct]
+      %td=stats[:masked][:correct]
+      %td=stats[:total][:correct]
+    %tr
+      %td Completed
+      %td=stats[:word][:size]
+      %td=stats[:letter][:size]
+      %td=stats[:masked][:size]
+      %td=stats[:total][:size]
+    %tr
+      %td Percent
+      %td=stats[:word][:percent]
+      %td=stats[:letter][:percent]
+      %td=stats[:masked][:percent]
+      %td=stats[:total][:percent]
+
